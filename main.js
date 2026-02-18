@@ -321,7 +321,7 @@ function handleSubmit(e) {
     .catch((error) => {
       console.error(error);
       btn.disabled = false;
-      btn.textContent = 'Quiero mi auditoría de pipeline';
+      btn.textContent = 'Quiero mi diagnóstico comercial';
       btn.style.opacity = '1';
       alert('No se pudo enviar. Intenta nuevamente.');
     });
@@ -531,7 +531,7 @@ ctaObserver.observe(ctaSection);
       thinks: '"Todo está bien, no necesito nada nuevo."',
       reality: 'Tu prospecto ni siquiera sabe que existe una solución como la tuya. No te está buscando. Si le hablas de tu producto ahora, te ignora.',
       opportunity: 'No le vendes. Le muestras un problema que no sabía que tenía. Un mensaje que lo haga parar y pensar "¿me estará pasando esto?".',
-      ctaText: 'Descubre cuántos prospectos estás perdiendo aquí',
+      ctaText: 'Descubre lo que estás perdiendo',
       ctaStyle: 'outline'
     },
     {
@@ -542,7 +542,7 @@ ctaObserver.observe(ctaSection);
       thinks: '"Algo no está funcionando, pero no sé exactamente qué."',
       reality: 'Tu prospecto siente la frustración — sus resultados no son los que espera, pero no sabe por qué. Si le hablas con jerga técnica o le mandas un brochure, lo pierdes.',
       opportunity: 'Validas su dolor. Le pones nombre a lo que siente. Y te posicionas como alguien que entiende su situación, no que le quiere vender.',
-      ctaText: 'Mira cómo capturamos prospectos en esta etapa',
+      ctaText: 'Cómo captamos en esta etapa',
       ctaStyle: 'outline'
     },
     {
@@ -553,7 +553,7 @@ ctaObserver.observe(ctaSection);
       thinks: '"Necesito resolver esto. ¿Qué opciones hay?"',
       reality: 'Tu prospecto está comparando. Busca en Google, pregunta en su red, ve contenido. Si tu marca no aparece con un mensaje claro y diferente, elige a otro.',
       opportunity: 'Rompes creencias falsas. Le muestras por qué las soluciones que está considerando no van a funcionar — y cuál es el enfoque correcto.',
-      ctaText: 'Así diferenciamos tu mensaje de la competencia',
+      ctaText: 'Cómo diferenciamos tu mensaje',
       ctaStyle: 'solid'
     },
     {
@@ -564,7 +564,7 @@ ctaObserver.observe(ctaSection);
       thinks: '"Me interesa, pero ¿realmente funciona? ¿Vale la pena el riesgo?"',
       reality: 'Ya vio tu contenido, visitó tu web, quizás hasta habló con tu equipo. Pero tiene miedo de gastar y no ver retorno. Necesita pruebas, no promesas.',
       opportunity: 'Le bajas la fricción con casos reales, transparencia total y un modelo que le diga "si no funciona, nosotros también perdemos".',
-      ctaText: 'Así convertimos dudas en reuniones',
+      ctaText: 'Convierte dudas en reuniones',
       ctaStyle: 'solid'
     },
     {
@@ -575,7 +575,7 @@ ctaObserver.observe(ctaSection);
       thinks: '"Necesito resolver esto ya. Solo necesito estar seguro."',
       reality: 'Tu prospecto tiene el dolor claro, la urgencia real y el presupuesto. Solo necesita un siguiente paso concreto y la seguridad de que está tomando la decisión correcta.',
       opportunity: 'Cero fricción. Mensaje directo. Un CTA que no deje lugar a dudas. Si aquí no cierras, es porque tu proceso final no está diseñado para convertir.',
-      ctaText: 'Agenda tu auditoría — te mostramos tu pipeline completo',
+      ctaText: 'Solicita tu diagnóstico ahora',
       ctaStyle: 'solid'
     }
   ];
