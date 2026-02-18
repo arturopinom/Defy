@@ -303,8 +303,7 @@ function handleSubmit(e) {
 
   fetch(endpoint, {
     method: 'POST',
-    mode: 'no-cors',
-    body: JSON.stringify(payload)
+    mode: 'no-cors'
   })
     .then(() => {
       form.innerHTML = `
