@@ -607,18 +607,24 @@ ctaObserver.observe(ctaSection);
       <div class="conciencia-card-stage">${data.stage}</div>
       <div class="conciencia-card-grid">
         <div class="conciencia-card-block">
-          <div class="conciencia-card-block-icon">${ICONS.thinks}</div>
-          <h4>Lo que piensa tu prospecto</h4>
+          <div class="conciencia-card-block-header">
+            <div class="conciencia-card-block-icon">${ICONS.thinks}</div>
+            <h4>Lo que piensa tu prospecto</h4>
+          </div>
           <p>${data.thinks}</p>
         </div>
         <div class="conciencia-card-block">
-          <div class="conciencia-card-block-icon">${ICONS.reality}</div>
-          <h4>Lo que realmente pasa</h4>
+          <div class="conciencia-card-block-header">
+            <div class="conciencia-card-block-icon">${ICONS.reality}</div>
+            <h4>Lo que realmente pasa</h4>
+          </div>
           <p>${data.reality}</p>
         </div>
         <div class="conciencia-card-block">
-          <div class="conciencia-card-block-icon">${ICONS.opportunity}</div>
-          <h4>Qué mensaje necesita</h4>
+          <div class="conciencia-card-block-header">
+            <div class="conciencia-card-block-icon">${ICONS.opportunity}</div>
+            <h4>Qué mensaje necesita</h4>
+          </div>
           <p>${data.opportunity}</p>
         </div>
       </div>
@@ -741,4 +747,87 @@ ctaObserver.observe(ctaSection);
       setLevel(next);
     }
   }, { passive: true });
+})();
+
+/* ================================================
+   PRICING ACCORDION — mobile only
+   ================================================ */
+(function initPricingAccordion() {
+  if (window.innerWidth > 767) return;
+
+  document.querySelectorAll('.pricing-card:not(.popular)').forEach(card => {
+    // Wrap collapsible content in .pricing-body
+    const body = document.createElement('div');
+    body.className = 'pricing-body';
+    ['pricing-desc', 'pricing-features', 'btn-pricing'].forEach(cls => {
+      const el = card.querySelector('.' + cls);
+      if (el) body.appendChild(el);
+    });
+    card.appendChild(body);
+
+    // Toggle button
+    const toggle = document.createElement('button');
+    toggle.className = 'pricing-toggle';
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.innerHTML = `<span>Ver beneficios</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>`;
+    card.insertBefore(toggle, body);
+
+    toggle.addEventListener('click', () => {
+      const isOpen = card.classList.toggle('pricing-open');
+      toggle.setAttribute('aria-expanded', isOpen);
+      toggle.querySelector('span').textContent = isOpen ? 'Ocultar' : 'Ver beneficios';
+    });
+  });
+})();
+
+/* ================================================
+   MOBILE SWIPERS — dot pagination + peek
+   ================================================ */
+(function initMobileSwipers() {
+  if (window.innerWidth > 767) return;
+
+  const SWIPER_SELECTORS = [
+    '.problems-grid',
+    '.process-grid',
+    '.services-grid',
+    '.timeline-grid',
+  ];
+
+  SWIPER_SELECTORS.forEach(sel => {
+    document.querySelectorAll(sel).forEach(track => {
+      const cards = [...track.children].filter(el => el.nodeType === 1);
+      if (cards.length < 2) return;
+
+      // Dot pagination container
+      const dotsWrap = document.createElement('div');
+      dotsWrap.className = 'swiper-dots';
+      dotsWrap.setAttribute('aria-hidden', 'true');
+
+      cards.forEach((card, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'swiper-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Ir al slide ' + (i + 1));
+        dot.addEventListener('click', () => {
+          card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        });
+        dotsWrap.appendChild(dot);
+      });
+
+      track.parentNode.insertBefore(dotsWrap, track.nextSibling);
+
+      // IntersectionObserver: activa el dot del card más visible
+      const dots = dotsWrap.querySelectorAll('.swiper-dot');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            const idx = cards.indexOf(entry.target);
+            if (idx === -1) return;
+            dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+          }
+        });
+      }, { root: track, threshold: 0.5 });
+
+      cards.forEach(card => observer.observe(card));
+    });
+  });
 })();

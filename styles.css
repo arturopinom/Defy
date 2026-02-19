@@ -2572,21 +2572,27 @@ input:focus-visible {
   border-radius: 12px;
   border: 1px solid var(--border-subtle, #f0f0f0);
 }
+.conciencia-card-block-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
 .conciencia-card-block-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 12px;
   background: color-mix(in srgb, var(--conciencia-accent, var(--accent)) 10%, transparent);
   color: var(--conciencia-accent, var(--accent));
   transition: background 0.35s ease, color 0.35s ease;
 }
 .conciencia-card-block-icon svg {
-  width: 16px;
-  height: 16px;
+  width: 12px;
+  height: 12px;
 }
 .conciencia-card-block h4 {
   font-size: 0.6875rem;
@@ -2594,7 +2600,7 @@ input:focus-visible {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-tertiary);
-  margin-bottom: 8px;
+  margin-bottom: 0;
 }
 .conciencia-card-block p {
   font-size: 0.9rem;
@@ -3110,4 +3116,176 @@ input:focus-visible {
 }
 .stat-value:hover {
   text-shadow: 0 0 20px rgba(37,99,235,0.15);
+}
+
+/* ================================================
+   MOBILE COMPACT — optimización de espacio
+   ================================================ */
+@media (max-width: 767px) {
+
+  /* Sección: reducir padding vertical */
+  .section { padding: 48px 0; }
+  .section-header,
+  .section-header.centered { margin-bottom: 28px; }
+  .section-header p { font-size: 0.875rem; }
+
+  /* ---- Swiper base — aplicado a grids horizontales ---- */
+  .problems-grid,
+  .process-grid,
+  .services-grid,
+  .timeline-grid {
+    display: flex !important;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 12px !important;
+    padding-bottom: 8px;
+    margin: 0 -24px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .problems-grid::-webkit-scrollbar,
+  .process-grid::-webkit-scrollbar,
+  .services-grid::-webkit-scrollbar,
+  .timeline-grid::-webkit-scrollbar { display: none; }
+
+  /* ---- Dot pagination ---- */
+  .swiper-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+  }
+  .swiper-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--border);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: width 0.3s ease, background 0.3s ease;
+    flex-shrink: 0;
+  }
+  .swiper-dot.active {
+    width: 22px;
+    background: var(--accent);
+  }
+
+  /* ---- Cards: peek del siguiente (scroll-snap + ancho calibrado) ---- */
+  .problems-grid > .problem-card {
+    flex: 0 0 82%;
+    scroll-snap-align: center;
+    padding: 22px 20px;
+  }
+  .process-grid > .process-step {
+    flex: 0 0 75%;
+    scroll-snap-align: center;
+    padding: 24px 20px;
+  }
+  .services-grid > .service-card {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+  }
+  /* Featured card: quitar grid interno, comportarse como card normal */
+  .services-grid > .service-card.featured {
+    display: flex;
+    flex-direction: column;
+    grid-column: unset;
+  }
+  /* ---- Pricing: acordeón vertical (no swiper) ---- */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    overflow-x: visible;
+    margin: 0;
+    padding: 0;
+  }
+  .pricing-grid > .pricing-card {
+    padding: 20px;
+  }
+  /* Badge inline en mobile (no absolute saliendo de la card) */
+  .pricing-badge {
+    position: static;
+    transform: none;
+    display: inline-flex;
+    margin-bottom: 10px;
+    font-size: 0.625rem;
+  }
+  /* Precio compacto */
+  .pricing-price {
+    font-size: 1.25rem;
+    margin-bottom: 6px;
+  }
+  /* Cuerpo colapsable */
+  .pricing-body {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.38s ease, opacity 0.25s ease;
+    margin-top: 0;
+  }
+  .pricing-card.pricing-open .pricing-body {
+    max-height: 600px;
+    opacity: 1;
+    margin-top: 12px;
+  }
+  /* Botón toggle */
+  .pricing-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 0 0;
+    line-height: 1;
+  }
+  .pricing-toggle svg {
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+  .pricing-card.pricing-open .pricing-toggle svg {
+    transform: rotate(180deg);
+  }
+  /* Popular: siempre expandida, sin toggle */
+  .pricing-card.popular {
+    padding: 20px;
+    order: -1; /* va primero en mobile */
+  }
+
+  .timeline-grid > .problem-card {
+    flex: 0 0 75%;
+    scroll-snap-align: center;
+    padding: 22px 20px;
+  }
+
+  /* ---- Proceso: ocultar animación del track en mobile ---- */
+  .process-flight { display: none; }
+  .problems-cta { margin-top: 28px; }
+
+  /* ---- Conciencia card compacta ---- */
+  .conciencia-card { padding: 20px 16px; }
+  .conciencia-card-grid { gap: 8px; }
+  .conciencia-card-block { padding: 12px; }
+  .conciencia-card-block p { font-size: 0.8125rem; line-height: 1.6; }
+
+  /* ---- FAQ ---- */
+  .faq-question { padding: 14px 16px; }
+  .faq-answer p { font-size: 0.875rem; line-height: 1.6; }
+
+  /* ---- CTA section ---- */
+  .cta-inner { padding: 36px 20px; }
+  .cta-form { gap: 10px; }
+
+  /* ---- Logos bar ---- */
+  .logos-bar { padding: 16px 0; }
 }
