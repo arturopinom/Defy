@@ -317,6 +317,7 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="noise-overlay" aria-hidden="true"></div>
 <nav class="nav" id="mainNav" aria-label="Navegación principal">
 <a class="nav-logo" href="#">
 <span class="logo-letter">D</span><span class="logo-letter e-flip">E</span><span class="logo-letter">F</span><span class="logo-letter y-accent">Y</span>
@@ -345,11 +346,9 @@
 <main id="contenido-principal">
 <section class="hero" aria-label="Captación para empresas especializadas — DEFY Chile">
 <canvas aria-hidden="true" class="hero-particles" id="heroParticles"></canvas>
-<div class="hero-video-bg">
-<video aria-hidden="true" autoplay="" loop="" muted="" playsinline="" poster="" preload="metadata">
-<source src="https://videos.pexels.com/video-files/3129671/3129671-sd_640_360_30fps.mp4" type="video/mp4"/>
-</video>
-</div>
+<div aria-hidden="true" class="hero-blob hero-blob-1"></div>
+<div aria-hidden="true" class="hero-blob hero-blob-2"></div>
+<div aria-hidden="true" class="hero-blob hero-blob-3"></div>
 <div aria-hidden="true" class="hero-overlay"></div>
 <div class="hero-gradient-bottom"></div>
 <div class="container">
@@ -357,7 +356,7 @@
 <div class="hero-content">
 <div class="hero-eyebrow">
 <span class="dot"></span>
-          Cupos limitados — Febrero 2026
+          Cupos limitados — Marzo 2026
         </div>
 <h1>
 <span class="line">Tus clientes están ahí. <span class="muted">Solo que</span></span>
@@ -470,6 +469,7 @@
 </div>
 </div>
 </section>
+<hr class="section-rule" aria-hidden="true">
 <section class="section process-section" id="proceso" aria-labelledby="proceso-titulo">
 <div class="container">
 <div class="section-header centered reveal">
@@ -512,6 +512,7 @@
 </div>
 </div>
 </section>
+<hr class="section-rule" aria-hidden="true">
 <section class="section" id="servicios" aria-labelledby="servicios-titulo">
 <div class="container">
 <div class="section-header centered reveal">
@@ -692,6 +693,13 @@
 <div class="section-header centered reveal">
 <div class="label">Diferenciadores</div>
 <h2 class="heading-lg" id="diferenciadores-titulo">¿Por qué Defy y no otra agencia?</h2>
+<div class="defy-diff-stats" aria-hidden="true">
+<span class="defy-diff-stat"><strong class="gradient-text">100%</strong> orientado a resultados</span>
+<span class="defy-diff-sep">·</span>
+<span class="defy-diff-stat">Sin markup en ad spend</span>
+<span class="defy-diff-sep">·</span>
+<span class="defy-diff-stat">Dashboard en tiempo real</span>
+</div>
 </div>
 <div class="problems-grid stagger" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
 <div class="problem-card reveal" style="background: var(--bg-card);">
@@ -771,6 +779,7 @@
 </div>
 </section>
 <!-- ===== CONTENIDO FACTORIAL ===== -->
+<hr class="section-rule" aria-hidden="true">
 <section class="section" id="contenido-factorial" style="background: var(--bg-elevated);">
 <div class="container">
 <div class="section-header centered reveal">
@@ -997,7 +1006,7 @@
 <section class="section cta-section" id="diagnostico">
 <div class="container">
 <div class="cta-inner">
-<div class="badge reveal">Cupos limitados — Febrero 2026</div>
+<div class="badge reveal">Cupos limitados — Marzo 2026</div>
 <h2 class="reveal">¿Cuánta plata estás dejando en la mesa <span class="accent">cada mes?</span></h2>
 <p class="reveal">
         Auditoría gratuita de 60 minutos. Analizamos tu proceso comercial y te mostramos exactamente dónde se fugan los leads, cuánto te cuesta cada cliente hoy, y cómo un sistema de adquisición cambiaría tus números.
